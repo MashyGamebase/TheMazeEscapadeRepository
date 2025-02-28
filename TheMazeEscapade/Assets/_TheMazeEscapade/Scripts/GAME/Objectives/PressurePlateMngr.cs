@@ -50,6 +50,10 @@ public class PressurePlateMngr : MonoBehaviour
             _pressed = true;
             isPressed = true;
             OnPressedDownEvents.Invoke();
+            if (triggerGroup != null) {
+                  triggerGroup.triggerStates[triggerIndex] = true;
+                  triggerGroup.CheckStates();
+            }
             TogglePlate(true);
       }
 
