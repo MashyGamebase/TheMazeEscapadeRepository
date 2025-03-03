@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorMngr : MonoBehaviour
+public class ChestMngr : MonoBehaviour
 {
     public Collider2D blocker;
     public SpriteRenderer sprRenderer;
     public Sprite spr_close, spr_open;
 
-    public void SetDoorState(bool state)
+    public void SetChestOpen(bool state)
     {
         if (state)
         {

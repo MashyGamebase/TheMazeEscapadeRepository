@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class KeyTrigger : MonoBehaviour
 {
     // Hover Properties
     public Transform target;
 
-
     [SerializeField] private float amplitude = 0.5f;
     [SerializeField] private float frequency = 0.5f;
 
     private Vector3 startPosition;
+
+    public UnityEvent OnKeyCollected;
 
     private void Start()
     {
@@ -28,7 +30,8 @@ public class KeyTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            LevelObjectives.Instance.hasKey = true;
+            //LevelObjectives.Instance.hasKey = true;
+            OnKeyCollected?.Invoke();
             Destroy(gameObject);
         }
     }
