@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static log4net.Appender.RollingFileAppender;
 
 public class EnemyAI : MonoBehaviour
 {
