@@ -7,6 +7,6 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        FadeCanvasController.Instance.FadeLoadLevel("Level-1");
     }
 }
