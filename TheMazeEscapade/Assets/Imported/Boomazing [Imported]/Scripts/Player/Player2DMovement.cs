@@ -11,6 +11,11 @@ public class Player2DMovement : MonoBehaviour
     Vector2 moveInput = Vector2.zero;
     Vector2 faceDirection = Vector2.zero;
 
+    [SerializeField] private AudioSource source;
+    [SerializeField] private List<AudioClip> clips;
+
+    public List<SpriteRenderer> spr;
+
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -65,5 +70,10 @@ public class Player2DMovement : MonoBehaviour
         {
             GetComponent<PlayerHealth>().TakeDamage(1);
         }
+    }
+
+    public void PlayOneShotFootstep()
+    {
+        source.PlayOneShot(clips[Random.Range(0, clips.Count)]);
     }
 }

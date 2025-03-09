@@ -15,8 +15,7 @@ namespace Cainos.PixelArtTopDown_Basic
         {
             other.gameObject.layer = LayerMask.NameToLayer(layer);
 
-            other.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayer;
-            SpriteRenderer[] srs = other.gameObject.GetComponentsInChildren<SpriteRenderer>();
+            List<SpriteRenderer> srs = other.gameObject.GetComponent<Player2DMovement>().spr;
             foreach ( SpriteRenderer sr in srs)
             {
                 sr.sortingLayerName = sortingLayer;
