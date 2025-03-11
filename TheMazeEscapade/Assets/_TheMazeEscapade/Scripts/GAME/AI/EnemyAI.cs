@@ -1,25 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float moveSpeed = 2f; // Speed of movement
-    public float roamRadius = 5f; // Maximum distance from the starting point
-    public float changeDirectionTime = 3f; // Time before changing direction
+    public float moveSpeed = 2f;
+    public float roamRadius = 5f;
+    public float changeDirectionTime = 3f;
     public float idleTime = 1.5f;
+    public bool canChasePlayer = false; // Determines if the enemy can chase the player
 
     private Vector2 roamCenter;
     private Vector2 targetPosition;
-    private float timer;
+    private bool isMoving = false;
+    private bool isIdling = false;
+    private Transform player;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
-    private bool isMoving = false;        // True when moving, False when idling
-    private bool isIdling = false;
 
     void Start()
     {
-        roamCenter = transform.position; // Set initial roam center
+        roamCenter = transform.position;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        if (canChasePlayer)
+            idleTime = 0.05f;
+
         PickNewTarget();
     }
 
@@ -29,7 +34,6 @@ public class EnemyAI : MonoBehaviour
         {
             Move();
         }
-
         AnimationControl();
     }
 
@@ -40,16 +44,21 @@ public class EnemyAI : MonoBehaviour
 
     void Move()
     {
-        // Move towards the target position
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-
-        // Flip the sprite based on movement direction
         spriteRenderer.flipX = targetPosition.x < transform.position.x;
 
-        // Check if the enemy reached the target
         if (Vector2.Distance(transform.position, targetPosition) < 0.1f && !isIdling)
         {
             StartCoroutine(IdleBeforeNextMove());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (!collision.gameObject.GetComponent<Player2DMovement>().knockback)
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1, transform.position, 6.5f);
         }
     }
 
@@ -57,25 +66,26 @@ public class EnemyAI : MonoBehaviour
     {
         isMoving = false;
         isIdling = true;
-        yield return new WaitForSeconds(idleTime); // Wait before moving again
+        yield return new WaitForSeconds(idleTime);
         isIdling = false;
         PickNewTarget();
     }
 
     void PickNewTarget()
     {
-        // Pick a random position within the roam radius
-        targetPosition = roamCenter + Random.insideUnitCircle * roamRadius;
+        if (canChasePlayer && player != null)
+        {
+            Vector2 directionToPlayer = (player.position - (Vector3)roamCenter).normalized;
+            Vector2 randomOffset = Random.insideUnitCircle * 2f; // Adds a random movement pattern
+            targetPosition = (Vector2)player.position + randomOffset;
+        }
+        else
+        {
+            targetPosition = roamCenter + Random.insideUnitCircle * roamRadius;
+        }
         isMoving = true;
     }
 
-    public void Attack()
-    {
-        // Placeholder attack function
-        Debug.Log("Enemy attacks!");
-    }
-
-    // Draw roaming radius in Scene view
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;

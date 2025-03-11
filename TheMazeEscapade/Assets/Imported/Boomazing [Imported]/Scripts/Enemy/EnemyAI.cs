@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage(1);
+            //collision.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage(1);
         }
     }
 

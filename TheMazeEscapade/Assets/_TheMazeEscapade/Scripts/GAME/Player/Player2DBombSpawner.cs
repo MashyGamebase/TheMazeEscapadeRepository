@@ -33,7 +33,7 @@ public class Player2DBombSpawner : MonoBehaviour
 
         GameObject bomb = Instantiate(bombPrefab, cellCenterPos, Quaternion.identity);
 
-        bomb.GetComponent<Bomb>().DelayedCollisionEnabled();
+        //bomb.GetComponent<Bomb>().DelayedCollisionEnabled();
 
         // Optional: Add velocity to the bomb if needed
         Rigidbody2D bombRigidbody = bomb.GetComponent<Rigidbody2D>();

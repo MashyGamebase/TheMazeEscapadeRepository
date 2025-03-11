@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 665114363087693636}
   - component: {fileID: 1335760878760421503}
   - component: {fileID: 8442954022504668181}
+  - component: {fileID: 2376887437115517774}
   m_Layer: 20
   m_Name: EnemyPF
   m_TagString: Untagged
@@ -204,6 +205,41 @@ MonoBehaviour:
   idleTime: 1.5
   spriteRenderer: {fileID: 355272802599841434}
   animator: {fileID: 9034733852993899208}
+--- !u!58 &2376887437115517774
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160543004787939830}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &5659794348337881420
 GameObject:
   m_ObjectHideFlags: 0
