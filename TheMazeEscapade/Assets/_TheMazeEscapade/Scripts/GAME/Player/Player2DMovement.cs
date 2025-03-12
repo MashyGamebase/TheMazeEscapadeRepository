@@ -13,6 +13,7 @@ public class Player2DMovement : MonoBehaviour
     Vector2 faceDirection = Vector2.zero;
 
     [SerializeField] private AudioSource source;
+    [SerializeField] private AudioSource hurtSource;
     [SerializeField] private List<AudioClip> clips;
     [SerializeField] private AudioClip hurtSound;
 
@@ -109,6 +110,6 @@ public class Player2DMovement : MonoBehaviour
 
     public void PlayOneShotTakeDamage()
     {
-        source.PlayOneShot(hurtSound);
+        hurtSource.PlayOneShot(hurtSound);
     }
 }

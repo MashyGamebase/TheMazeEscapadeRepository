@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     private bool isMoving = false;
     private bool isIdling = false;
     private Transform player;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] public SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
 
     void Start()
@@ -40,6 +40,7 @@ public class EnemyAI : MonoBehaviour
     void AnimationControl()
     {
         animator.SetBool("isMoving", isMoving);
+        animator.SetBool("movingRight", !spriteRenderer.flipX);
     }
 
     void Move()

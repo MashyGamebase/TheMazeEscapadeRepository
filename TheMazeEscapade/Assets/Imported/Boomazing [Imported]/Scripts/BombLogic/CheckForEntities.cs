@@ -8,7 +8,7 @@ public class CheckForEntities : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyAI>().Die();
+            //collision.GetComponent<EnemyAI>().Die();
         }
     }
 }

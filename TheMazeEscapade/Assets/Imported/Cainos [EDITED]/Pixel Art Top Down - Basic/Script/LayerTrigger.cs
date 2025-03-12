@@ -13,12 +13,22 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            other.gameObject.layer = LayerMask.NameToLayer(layer);
-
-            List<SpriteRenderer> srs = other.gameObject.GetComponent<Player2DMovement>().spr;
-            foreach ( SpriteRenderer sr in srs)
+            if (other.gameObject.CompareTag("Player"))
             {
-                sr.sortingLayerName = sortingLayer;
+                other.gameObject.layer = LayerMask.NameToLayer(layer);
+
+                List<SpriteRenderer> srs = other.gameObject.GetComponent<Player2DMovement>().spr;
+                foreach (SpriteRenderer sr in srs)
+                {
+                    sr.sortingLayerName = sortingLayer;
+                }
+            }
+            else if(other.gameObject.CompareTag("Enemy"))
+            {
+                other.gameObject.layer = LayerMask.NameToLayer(layer);
+
+                SpriteRenderer srs = other.gameObject.GetComponent<EnemyAI>().spriteRenderer;
+                srs.sortingLayerName = sortingLayer;
             }
         }
 

@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
             // Die
             // Gameover Screen
             //LevelObjectives.Instance.Game_OnLose();
+            GetComponentInChildren<PlayerCanvasController>().RestartButton();
         }
 
         healthIcon.fillAmount = (float)currentHealth / (float)maxHealth;

@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The Maze Escapade
+  m_text: The Maze Escape
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8892c788e14ac2f4eaf65cf6ec12e47e, type: 2}
   m_sharedMaterial: {fileID: -8865686287061619980, guid: 8892c788e14ac2f4eaf65cf6ec12e47e,
